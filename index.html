@@ -1,13 +1,755 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
-</head>
-<body>
-    <h1>My website works!</h1>
-    <p>This is my first website published with GitHub Pages.</p>
-</body>
-</html>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>How to Save a Jezebel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+/* Layout: cinematic single-scroll noir. Full-bleed hero with a rim-lit silhouette, then dossier-style sections. */
+:root{
+  --ink:#08060a;
+  --ink-2:#100c13;
+  --ink-3:#1a1320;
+  --bone:#efe7df;
+  --mute:#9a8f98;
+  --blood:#e0194f;
+  --blood-2:#ff4b7a;
+  --gold:#d9b273;
+  --line:rgba(239,231,223,.12);
+  --f-display:'Instrument Serif','Times New Roman',serif;
+  --f-body:'Manrope',system-ui,sans-serif;
+  --f-mono:'JetBrains Mono',ui-monospace,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{background:var(--ink);color:var(--bone);font-family:var(--f-body);font-size:16px;line-height:1.6;overflow-x:clip}
+::selection{background:var(--blood);color:#fff}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
+:focus-visible{outline:2px solid var(--blood-2);outline-offset:3px}
+.wrap{width:100%;max-width:1240px;margin-inline:auto;padding-inline:20px}
+section{position:relative;padding-block:clamp(72px,11vw,150px)}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--blood-2);display:flex;align-items:center;gap:12px}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--blood-2)}
+h2{font-family:var(--f-display);font-weight:400;font-size:clamp(40px,7vw,98px);line-height:.95;letter-spacing:-.02em;margin:18px 0 0;text-wrap:balance}
+h2 em,.jz{font-style:italic;color:var(--blood-2)}
+.lead{font-size:clamp(16px,1.6vw,19px);color:var(--mute);max-width:60ch;margin-top:22px}
+.mono{font-family:var(--f-mono)}
+
+/* grain + vignette + progress + cursor */
+.grain{position:fixed;left:-50%;top:-50%;width:200%;height:200%;clip-path:inset(25%);pointer-events:none;z-index:90;opacity:.07;
+ background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+ animation:grain 1s steps(6) infinite}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-4%,3%)}40%{transform:translate(3%,-5%)}60%{transform:translate(-6%,-2%)}80%{transform:translate(5%,4%)}100%{transform:translate(0,0)}}
+.progress{position:fixed;top:0;left:0;height:2px;width:100%;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,var(--blood),var(--gold));z-index:100}
+.cur,.cur-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:120;border-radius:50%;opacity:0;transition:opacity .3s}
+.cur{width:6px;height:6px;margin:-3px 0 0 -3px;background:var(--blood-2)}
+.cur-ring{width:38px;height:38px;margin:-19px 0 0 -19px;border:1px solid rgba(255,75,122,.6);transition:width .25s,height .25s,margin .25s,background .25s,opacity .3s}
+.cur-ring.big{width:74px;height:74px;margin:-37px 0 0 -37px;background:rgba(224,25,79,.14)}
+@media(hover:none){.cur,.cur-ring{display:none}}
+
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:80;padding:calc(14px + env(safe-area-inset-top,0px)) 0 14px;transition:background .4s,backdrop-filter .4s}
+nav.solid{background:rgba(8,6,10,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{font-family:var(--f-display);font-size:22px;letter-spacing:-.01em;white-space:nowrap}
+.logo i{color:var(--blood-2)}
+.links{display:flex;gap:26px;font-size:13px;letter-spacing:.04em}
+.links a{color:var(--mute);transition:color .2s}
+.links a:hover{color:var(--bone)}
+@media(max-width:860px){.links{display:none}}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:999px;background:var(--blood);color:#fff;font-weight:700;font-size:14px;letter-spacing:.03em;position:relative;overflow:hidden;transition:transform .2s,box-shadow .3s;box-shadow:0 0 0 rgba(224,25,79,0)}
+.btn:hover{box-shadow:0 10px 50px rgba(224,25,79,.55)}
+.btn::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.35) 50%,transparent 70%);transform:translateX(-120%);transition:transform .7s}
+.btn:hover::after{transform:translateX(120%)}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--bone)}
+.btn.ghost:hover{border-color:var(--blood-2);box-shadow:0 10px 40px rgba(224,25,79,.2)}
+.btn.sm{padding:10px 20px;font-size:13px}
+
+/* hero */
+.hero{min-height:760px;padding-block:130px 70px;overflow:hidden;display:flex;align-items:center;isolation:isolate}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:-3}
+.hero::before{content:"";position:absolute;inset:0;z-index:-2;background:radial-gradient(60% 70% at 72% 55%,rgba(224,25,79,.32),transparent 70%),radial-gradient(40% 40% at 20% 100%,rgba(217,178,115,.12),transparent 70%)}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(8,6,10,.0) 55%,var(--ink));}
+.hero .wrap{position:relative}
+.badge{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(255,75,122,.4);background:rgba(224,25,79,.1);padding:8px 16px;border-radius:999px;font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--blood-2);box-shadow:0 0 0 0 rgba(255,75,122,.7);animation:pulse 1.8s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 12px rgba(255,75,122,0)}100%{box-shadow:0 0 0 0 rgba(255,75,122,0)}}
+.hero h1{font-family:var(--f-display);font-weight:400;font-size:clamp(54px,11vw,170px);line-height:.84;letter-spacing:-.035em;margin:26px 0 0;max-width:9ch;position:relative}
+.hero h1 .l{display:block;overflow:hidden;padding-bottom:.06em}
+.hero h1 .l span{display:inline-block;transform:translateY(110%);animation:up 1.2s cubic-bezier(.2,.9,.1,1) forwards}
+.hero h1 .l:nth-child(2) span{animation-delay:.12s}
+.hero h1 .l:nth-child(3) span{animation-delay:.24s}
+@keyframes up{to{transform:none}}
+.hero h1 .jz{display:inline-block;background:linear-gradient(100deg,var(--blood-2),#ffd0dc 45%,var(--blood) 70%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:up 1.2s .24s cubic-bezier(.2,.9,.1,1) forwards,shine 5s linear infinite}
+@keyframes shine{to{background-position:-200% 0}}
+.sub{display:flex;align-items:center;gap:18px;margin-top:22px;font-family:var(--f-mono);font-size:clamp(12px,1.5vw,15px);letter-spacing:.42em;text-transform:uppercase;color:var(--gold)}
+.sub::before{content:"";width:60px;height:1px;background:var(--gold)}
+.hero p.t{max-width:46ch;margin:26px 0 0;font-size:clamp(16px,1.7vw,20px);color:#cfc5cb}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.cd{display:flex;gap:10px;margin-top:44px;flex-wrap:wrap}
+.cd div{min-width:78px;padding:12px 14px;border:1px solid var(--line);background:rgba(16,12,19,.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:14px}
+.cd b{display:block;font-family:var(--f-display);font-weight:400;font-size:38px;line-height:1;font-variant-numeric:tabular-nums}
+.cd small{font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+.cd-label{margin-top:44px;font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.cd-label + .cd{margin-top:12px}
+
+.figure{position:absolute;right:max(-2vw,-30px);bottom:-30px;height:min(112%,980px);aspect-ratio:400/900;z-index:-1;pointer-events:none;transition:transform .2s ease-out;will-change:transform}
+.figure svg{width:100%;height:100%;overflow:visible}
+.figure .base{filter:drop-shadow(0 0 28px rgba(224,25,79,.55)) drop-shadow(0 0 3px rgba(255,75,122,.6))}
+.figure .rim{-webkit-mask-image:radial-gradient(circle 190px at var(--mx,70%) var(--my,40%),#000 0,transparent 100%);mask-image:radial-gradient(circle 190px at var(--mx,70%) var(--my,40%),#000 0,transparent 100%)}
+.caption{position:absolute;right:20px;bottom:30px;font-family:var(--f-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);writing-mode:vertical-rl;transform:rotate(180deg)}
+@media(max-width:860px){.figure{opacity:.45;right:-18%;height:92%}.caption{display:none}}
+.scroll{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);font-family:var(--f-mono);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--mute);display:flex;flex-direction:column;align-items:center;gap:10px}
+.scroll i{width:1px;height:42px;background:linear-gradient(var(--blood-2),transparent);animation:drip 2s infinite}
+@keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* marquee */
+.marq{border-block:1px solid var(--line);background:var(--ink-2);overflow:hidden;padding:20px 0}
+.marq-track{display:flex;gap:56px;width:max-content;animation:mq 38s linear infinite}
+.marq:hover .marq-track{animation-play-state:paused}
+.marq span{font-family:var(--f-display);font-size:clamp(28px,4vw,52px);font-style:italic;white-space:nowrap;display:flex;align-items:center;gap:56px;color:var(--bone)}
+.marq span::after{content:"✦";color:var(--blood);font-style:normal;font-size:.6em}
+.marq span:nth-child(even){-webkit-text-stroke:1px var(--bone);color:transparent}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* rv */
+.rv{opacity:0;transform:translateY(40px);transition:opacity 1s cubic-bezier(.2,.8,.2,1),transform 1s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+/* definition */
+.defs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px;margin-top:56px}
+.def{position:relative;padding:34px 28px 30px;border:1px solid var(--line);border-radius:22px;background:var(--ink-2);overflow:hidden;min-width:0}
+.def::before{content:"";position:absolute;inset:0;background:radial-gradient(320px circle at var(--x,50%) var(--y,0%),rgba(224,25,79,.22),transparent 60%);opacity:0;transition:opacity .3s}
+.def:hover::before{opacity:1}
+.def > *{position:relative}
+.def .k{font-family:var(--f-mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.def h3{font-family:var(--f-display);font-weight:400;font-size:clamp(34px,4vw,48px);line-height:1;margin:14px 0 14px;font-style:italic}
+.def p{color:var(--mute);margin:0}
+.def.hot{background:linear-gradient(160deg,rgba(224,25,79,.22),var(--ink-2) 60%);border-color:rgba(255,75,122,.35)}
+
+/* bento */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:56px}
+.cell{grid-column:span 2;position:relative;border-radius:22px;border:1px solid var(--line);background:var(--ink-2);padding:28px;overflow:hidden;min-width:0;min-height:210px;display:flex;flex-direction:column;justify-content:space-between;gap:30px}
+.cell::before{content:"";position:absolute;inset:0;background:radial-gradient(380px circle at var(--x,50%) var(--y,50%),rgba(255,75,122,.2),transparent 60%);opacity:0;transition:opacity .3s}
+.cell:hover::before{opacity:1}
+.cell > *{position:relative}
+.cell.w3{grid-column:span 3}.cell.w4{grid-column:span 4}
+.cell .n{font-family:var(--f-display);font-size:clamp(60px,8vw,112px);line-height:.85;letter-spacing:-.03em}
+.cell .n sup{font-size:.35em;color:var(--blood-2);margin-left:4px;vertical-align:top;position:relative;top:.35em}
+.cell h3{margin:0 0 6px;font-size:18px;font-weight:700}
+.cell p{margin:0;color:var(--mute);font-size:14px}
+.cell .ic{font-family:var(--f-mono);font-size:11px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase}
+@media(max-width:900px){.bento{grid-template-columns:repeat(2,1fr)}.cell,.cell.w3,.cell.w4{grid-column:span 2}.cell.half{grid-column:span 1}}
+@media(max-width:520px){.cell.half{grid-column:span 2}}
+.live{display:flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:11px;color:var(--blood-2);letter-spacing:.14em;text-transform:uppercase}
+.wave{display:flex;gap:4px;align-items:center;height:56px}
+.wave i{width:4px;border-radius:2px;background:linear-gradient(var(--blood-2),var(--blood));animation:wv 1.1s ease-in-out infinite}
+@keyframes wv{0%,100%{height:12%}50%{height:100%}}
+
+/* instructor */
+.inst{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(30px,6vw,90px);align-items:center}
+@media(max-width:860px){.inst{grid-template-columns:1fr}}
+.mono-card{position:relative;aspect-ratio:4/5;border-radius:26px;overflow:hidden;background:radial-gradient(70% 60% at 50% 30%,rgba(217,178,115,.28),transparent 70%),linear-gradient(180deg,var(--ink-3),var(--ink));border:1px solid var(--line);max-width:100%}
+.mono-card svg.bust{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:84%}
+.mono-card .big{position:absolute;top:18px;left:0;right:0;text-align:center;font-family:var(--f-display);font-size:clamp(80px,15vw,200px);line-height:.9;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1px rgba(217,178,115,.7);font-style:italic}
+.mono-card .tag{position:absolute;left:18px;bottom:18px;font-family:var(--f-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;background:rgba(8,6,10,.75);padding:8px 12px;border-radius:999px;border:1px solid var(--line)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:34px}
+.stats div{border-top:1px solid var(--line);padding-top:14px}
+.stats b{font-family:var(--f-display);font-weight:400;font-size:clamp(38px,5vw,64px);line-height:1;display:block;font-variant-numeric:tabular-nums}
+.stats span{font-size:12px;color:var(--mute)}
+blockquote{margin:0}
+.pq{font-family:var(--f-display);font-style:italic;font-size:clamp(24px,3vw,38px);line-height:1.15;margin:30px 0 0;border-left:2px solid var(--blood);padding-left:22px}
+
+/* cases */
+.cases{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:56px}
+@media(max-width:900px){.cases{grid-template-columns:1fr}}
+.file{position:relative;border-radius:26px;padding:clamp(24px,3vw,40px);border:1px solid var(--line);background:var(--ink-2);overflow:hidden;min-width:0}
+.file.sara{background:linear-gradient(170deg,rgba(224,25,79,.28),var(--ink-2) 55%);border-color:rgba(255,75,122,.4)}
+.file .stamp{position:absolute;top:22px;right:-6px;transform:rotate(8deg);font-family:var(--f-mono);font-weight:700;font-size:12px;letter-spacing:.2em;padding:6px 14px;border:2px solid;text-transform:uppercase}
+.sara .stamp{color:var(--blood-2);border-color:var(--blood-2)}
+.josip .stamp{color:var(--mute);border-color:var(--mute)}
+.file .id{font-family:var(--f-mono);font-size:11px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase}
+.file h3{font-family:var(--f-display);font-weight:400;font-size:clamp(40px,5vw,68px);line-height:.95;margin:14px 0 6px;letter-spacing:-.02em}
+.file .role{color:var(--mute);font-size:14px;margin:0 0 24px}
+.bar{margin:14px 0}
+.bar label{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-bottom:6px}
+.bar .tr{height:6px;border-radius:6px;background:rgba(239,231,223,.08);overflow:hidden}
+.bar .fl{height:100%;width:0;border-radius:6px;background:linear-gradient(90deg,var(--blood),var(--blood-2));transition:width 1.6s cubic-bezier(.2,.8,.2,1)}
+.josip .bar .fl{background:linear-gradient(90deg,#5f5560,#9a8f98)}
+.red{display:inline;background:var(--bone);color:var(--bone);border-radius:2px;padding:0 2px;cursor:pointer;transition:background .4s,color .4s}
+.red:hover,.red.on{background:transparent;color:var(--blood-2)}
+.log{list-style:none;margin:24px 0 0;padding:0;display:grid;gap:0}
+.log li{display:grid;grid-template-columns:70px 1fr;gap:14px;padding:12px 0;border-top:1px solid var(--line);font-size:14px}
+.log time{font-family:var(--f-mono);font-size:11px;color:var(--gold);letter-spacing:.1em;padding-top:3px}
+.warn{margin-top:22px;padding:14px 16px;border-radius:14px;background:rgba(239,231,223,.05);font-size:14px;color:var(--bone)}
+.sara .warn{background:rgba(224,25,79,.14)}
+
+/* curriculum */
+.mods{margin-top:56px;border-top:1px solid var(--line)}
+.mod{border-bottom:1px solid var(--line)}
+.mod button{width:100%;display:grid;grid-template-columns:70px minmax(0,1fr) auto;align-items:center;gap:16px;padding:26px 6px;text-align:left;transition:padding .35s,background .35s}
+.mod button:hover{padding-left:20px;background:linear-gradient(90deg,rgba(224,25,79,.1),transparent)}
+.mod .no{font-family:var(--f-mono);font-size:13px;color:var(--blood-2);letter-spacing:.1em}
+.mod .nm{font-family:var(--f-display);font-size:clamp(26px,3.6vw,48px);line-height:1;letter-spacing:-.01em}
+.mod .pl{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-size:20px;transition:transform .4s,background .3s}
+.mod.open .pl{transform:rotate(135deg);background:var(--blood);border-color:var(--blood)}
+.mod .bd{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s cubic-bezier(.2,.8,.2,1)}
+.mod.open .bd{grid-template-rows:1fr}
+.mod .bd > div{overflow:hidden;min-height:0}
+.mod .in2{padding:0 6px 30px 86px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px 40px}
+@media(max-width:700px){.mod .in2{padding-left:6px;grid-template-columns:1fr}.mod button{grid-template-columns:44px minmax(0,1fr) auto}}
+.mod .in2 p{margin:0;color:var(--mute)}
+.mod .in2 ul{margin:0;padding:0;list-style:none;display:grid;gap:8px;font-size:14px}
+.mod .in2 li::before{content:"→ ";color:var(--blood-2)}
+.mod .meta{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);grid-column:1/-1}
+.note{margin-top:28px;font-family:var(--f-mono);font-size:12px;color:var(--mute);letter-spacing:.06em}
+
+/* meter */
+.meter{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,70px);margin-top:56px;align-items:center}
+@media(max-width:860px){.meter{grid-template-columns:1fr}}
+.checks{display:grid;gap:10px}
+.chk{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:16px;border:1px solid var(--line);background:var(--ink-2);cursor:pointer;transition:border-color .25s,background .25s,transform .25s;text-align:left;width:100%}
+.chk:hover{transform:translateX(6px);border-color:rgba(255,75,122,.5)}
+.chk .bx{flex:none;width:22px;height:22px;border-radius:7px;border:1px solid var(--mute);display:grid;place-items:center;font-size:13px;color:transparent;transition:.25s}
+.chk[aria-pressed=true]{background:rgba(224,25,79,.14);border-color:var(--blood-2)}
+.chk[aria-pressed=true] .bx{background:var(--blood);border-color:var(--blood);color:#fff}
+.gauge{position:relative;text-align:center;padding:30px 20px;border:1px solid var(--line);border-radius:26px;background:var(--ink-2);min-width:0}
+.gauge svg{width:100%;max-width:420px}
+.gauge .arc{transition:stroke-dashoffset 1s cubic-bezier(.2,.8,.2,1)}
+.gauge .nd{transform-origin:120px 120px;transition:transform 1s cubic-bezier(.3,1.4,.4,1)}
+.gauge .sc{font-family:var(--f-display);font-size:clamp(70px,9vw,120px);line-height:.9;margin-top:-20px;font-variant-numeric:tabular-nums}
+.gauge .vd{font-family:var(--f-display);font-style:italic;font-size:clamp(22px,2.4vw,30px);color:var(--blood-2);margin:8px 0 6px;min-height:2.3em}
+.gauge p{margin:0 0 18px;color:var(--mute);font-size:14px;min-height:3em}
+
+/* compare */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:40px}
+.tab{padding:10px 20px;border-radius:999px;border:1px solid var(--line);font-size:14px;transition:.25s}
+.tab[aria-selected=true]{background:var(--bone);color:var(--ink);border-color:var(--bone)}
+.cmp{position:relative;margin-top:22px;border-radius:28px;overflow:hidden;border:1px solid var(--line);height:clamp(480px,62vw,560px);user-select:none;touch-action:pan-y;--p:50%;cursor:ew-resize}
+.pane{position:absolute;inset:0;padding:clamp(22px,4vw,52px);display:flex;flex-direction:column;justify-content:space-between;gap:20px}
+.pane.b{background:linear-gradient(160deg,#18161a,#0c0b0d);filter:grayscale(1) contrast(1.05)}
+.pane.a{background:radial-gradient(70% 90% at 80% 20%,rgba(217,178,115,.28),transparent 70%),linear-gradient(160deg,rgba(224,25,79,.35),#150c14 70%);clip-path:inset(0 0 0 var(--p))}
+.pane .tg{font-family:var(--f-mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;display:flex;align-items:center;gap:10px}
+.pane.a .tg{justify-content:flex-end;color:var(--gold)}
+.pane .who{font-family:var(--f-display);font-size:clamp(30px,5vw,60px);line-height:1;margin:0}
+.pane.a .who{text-align:right}
+.mets{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.pane.a .mets{padding-left:calc(var(--p) * 0.0)}
+.met{border-top:1px solid rgba(239,231,223,.25);padding-top:10px}
+.met b{display:block;font-family:var(--f-display);font-weight:400;font-size:clamp(34px,6vw,76px);line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.met span{font-size:clamp(10px,1.3vw,13px);color:var(--mute);display:block;line-height:1.3}
+.pane.a .met{text-align:right}
+.pane.a .met span{color:#d8c9c4}
+.pane .qq{font-family:var(--f-display);font-style:italic;font-size:clamp(17px,2.4vw,28px);line-height:1.2;margin:0;max-width:34ch}
+.pane.a .qq{margin-left:auto;text-align:right}
+.handle{position:absolute;top:0;bottom:0;left:var(--p);width:2px;background:var(--bone);z-index:3;transform:translateX(-1px)}
+.handle i{position:absolute;top:50%;left:50%;width:56px;height:56px;margin:-28px;border-radius:50%;background:var(--bone);color:var(--ink);display:grid;place-items:center;font-size:18px;box-shadow:0 0 0 8px rgba(239,231,223,.15),0 10px 40px rgba(0,0,0,.6);letter-spacing:-2px}
+.hint{margin-top:14px;font-family:var(--f-mono);font-size:11px;color:var(--mute);letter-spacing:.14em;text-transform:uppercase;text-align:center}
+
+/* reviews */
+.rev-rows{display:grid;gap:16px;margin-top:56px;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.rev-row{display:flex;gap:16px;width:max-content;animation:mq 70s linear infinite}
+.rev-row.rev{animation-direction:reverse;animation-duration:85s}
+.rev-rows:hover .rev-row{animation-play-state:paused}
+.rc{width:min(86vw,380px);flex:none;padding:26px;border:1px solid var(--line);background:var(--ink-2);border-radius:22px;display:flex;flex-direction:column;gap:16px;justify-content:space-between;white-space:normal}
+.rc p{margin:0;font-size:15px;line-height:1.5}
+.rc .st{color:var(--gold);letter-spacing:.2em;font-size:13px}
+.rc .by{display:flex;align-items:center;gap:12px;font-size:13px}
+.av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-weight:800;background:linear-gradient(135deg,var(--blood),var(--gold));color:#fff;font-size:14px;flex:none}
+.by small{display:block;color:var(--mute);font-size:12px}
+.feat{margin-top:70px;text-align:center;max-width:960px;margin-inline:auto}
+.feat q{display:block;font-family:var(--f-display);font-size:clamp(30px,5vw,68px);line-height:1.05;letter-spacing:-.015em;quotes:"„" "“";min-height:3.2em;transition:opacity .5s,transform .5s}
+.feat q.out{opacity:0;transform:translateY(14px)}
+.feat cite{display:block;margin-top:20px;font-family:var(--f-mono);font-style:normal;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);transition:opacity .5s}
+.dots{display:flex;gap:8px;justify-content:center;margin-top:22px}
+.dots button{width:28px;height:3px;border-radius:3px;background:var(--line);transition:.3s}
+.dots button.on{background:var(--blood-2);width:52px}
+
+/* pricing */
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:16px;margin-top:56px;align-items:stretch}
+.plan{position:relative;border-radius:26px;padding:34px 28px;border:1px solid var(--line);background:var(--ink-2);display:flex;flex-direction:column;gap:20px;min-width:0;transition:transform .4s,border-color .3s}
+.plan:hover{transform:translateY(-8px);border-color:rgba(255,75,122,.5)}
+.plan.top{background:linear-gradient(170deg,rgba(224,25,79,.32),var(--ink-2) 65%);border-color:rgba(255,75,122,.55)}
+.plan .pt{position:absolute;top:-13px;left:28px;background:var(--gold);color:var(--ink);font-family:var(--f-mono);font-size:11px;font-weight:700;letter-spacing:.16em;padding:5px 12px;border-radius:999px;text-transform:uppercase}
+.plan h3{margin:0;font-family:var(--f-display);font-weight:400;font-size:36px;line-height:1}
+.plan .pr{font-family:var(--f-display);font-size:78px;line-height:.9;letter-spacing:-.03em}
+.plan .pr small{font-family:var(--f-body);font-size:15px;color:var(--mute);letter-spacing:0;margin-left:6px}
+.plan ul{list-style:none;margin:0;padding:0;display:grid;gap:10px;font-size:14px;flex:1}
+.plan li{display:flex;gap:10px;color:#d6cdd2}
+.plan li::before{content:"✦";color:var(--blood-2);font-size:11px;padding-top:4px}
+.plan .btn{justify-content:center}
+
+/* faq + form */
+.faq{margin-top:56px;max-width:860px}
+.q{border-top:1px solid var(--line)}
+.q:last-child{border-bottom:1px solid var(--line)}
+.q button{width:100%;text-align:left;padding:22px 0;font-family:var(--f-display);font-size:clamp(22px,2.6vw,32px);display:flex;justify-content:space-between;gap:20px;align-items:center}
+.q button span{color:var(--blood-2);transition:transform .35s;font-family:var(--f-body)}
+.q.open button span{transform:rotate(45deg)}
+.q .bd{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s}
+.q.open .bd{grid-template-rows:1fr}
+.q .bd p{overflow:hidden;min-height:0;margin:0;color:var(--mute)}
+.q.open .bd p{padding-bottom:22px}
+.final{text-align:center;overflow:hidden;isolation:isolate}
+.final::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(50% 60% at 50% 100%,rgba(224,25,79,.5),transparent 70%)}
+.final h2{max-width:14ch;margin-inline:auto;font-size:clamp(46px,9vw,140px)}
+.form{display:flex;gap:10px;max-width:560px;margin:40px auto 0;flex-wrap:wrap;justify-content:center}
+.form input{flex:1 1 260px;min-width:0;padding:16px 22px;border-radius:999px;border:1px solid var(--line);background:rgba(16,12,19,.8);color:var(--bone);font:inherit;font-size:15px}
+.form input::placeholder{color:var(--mute)}
+.form input:focus{outline:none;border-color:var(--blood-2);box-shadow:0 0 0 4px rgba(224,25,79,.2)}
+.ok{margin-top:18px;font-family:var(--f-mono);font-size:13px;color:var(--gold);min-height:1.5em;letter-spacing:.06em}
+footer{border-top:1px solid var(--line);padding-block:40px;color:var(--mute);font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+footer p{margin:0;max-width:62ch}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .rv{opacity:1;transform:none}
+  .hero h1 .l span,.hero h1 .jz{transform:none}
+}
+</style>
+
+<div class="progress" id="prog"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="cur" id="cur"></div><div class="cur-ring" id="ring"></div>
+
+<nav id="nav">
+  <div class="wrap">
+    <a href="#top" class="logo">Save a <i>Jezebel</i></a>
+    <div class="links">
+      <a href="#tecaj">Tečaj</a><a href="#prekra">Predavač</a><a href="#slucajevi">Slučajevi</a><a href="#program">Program</a><a href="#rezultati">Rezultati</a><a href="#upis">Upis</a>
+    </div>
+    <a href="#upis" class="btn sm mag">Upiši se</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <canvas id="smoke"></canvas>
+  <div class="figure" id="figure" aria-hidden="true">
+    <svg viewBox="0 0 400 900" preserveAspectRatio="xMidYMax meet">
+      <defs>
+        <linearGradient id="fg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#050406"/><stop offset="1" stop-color="#000"/></linearGradient>
+        <g id="woman">
+          <path d="M150 92C128 124 116 196 128 262C134 300 118 332 108 356C138 334 150 282 152 232C154 192 160 150 172 140Z"/>
+          <path d="M250 92C268 132 278 190 272 252C268 282 282 304 292 322C262 304 252 272 252 232C252 190 244 150 230 140Z"/>
+          <path d="M168 168C150 176 128 186 124 206C120 240 138 290 150 322C158 345 146 380 132 420C112 520 92 700 70 880L330 880C318 700 292 520 268 420C254 380 244 345 252 322C264 290 282 240 276 206C272 186 250 176 232 168L226 150C244 138 254 116 252 98C250 62 228 46 200 46C170 46 148 64 148 98C148 118 156 138 174 150Z"/>
+          <path d="M276 206C306 240 322 304 298 354C286 374 272 384 258 394L250 372C272 350 284 310 262 262Z"/>
+        </g>
+      </defs>
+      <g class="base" fill="url(#fg)" stroke="rgba(255,75,122,.35)" stroke-width="1.2"><use href="#woman"/></g>
+    </svg>
+    <svg viewBox="0 0 400 900" preserveAspectRatio="xMidYMax meet" class="rim" style="position:absolute;inset:0">
+      <g fill="none" stroke="#ff8aa8" stroke-width="2.4" style="filter:drop-shadow(0 0 8px #ff4b7a)"><use href="#woman"/></g>
+    </svg>
+  </div>
+  <span class="caption">Dosje 001 · Ona · Nepoznata</span>
+
+  <div class="wrap">
+    <span class="badge"><i class="dot"></i> Upisi u tijeku · početak 1.11.</span>
+    <h1><span class="l"><span>How to</span></span><span class="l"><span>Save a</span></span><span class="l"><span class="jz" id="scr">Jezebel</span></span></h1>
+    <div class="sub">an online course</div>
+    <p class="t">Prvi hrvatski tečaj za muškarce koji su umorni od toga da ih netko drugi spašava od vlastitih odluka. Vodi ga Prekra, čovjek koji je spasio najviše Jezebel u povijesti.</p>
+    <div class="cta-row">
+      <a class="btn mag" href="#upis">Rezerviraj mjesto <span>→</span></a>
+      <a class="btn ghost mag" href="#tecaj">Što dobivaš</a>
+    </div>
+    <div class="cd-label">Upisi se otvaraju za</div>
+    <div class="cd" id="cd" aria-live="off">
+      <div><b data-u="d">00</b><small>dana</small></div><div><b data-u="h">00</b><small>sati</small></div><div><b data-u="m">00</b><small>minuta</small></div><div><b data-u="s">00</b><small>sekundi</small></div>
+    </div>
+  </div>
+  
+</header>
+
+<div class="marq" aria-hidden="true">
+  <div class="marq-track" id="mq"></div>
+</div>
+
+<section id="tecaj">
+  <div class="wrap">
+    <div class="eyebrow rv">Rječnik</div>
+    <h2 class="rv">Prvo, naučimo <em>pojmove</em>.</h2>
+    <p class="lead rv">Prije nego što ikoga spasiš, moraš znati o čemu pričaš. Tri definicije koje svaki polaznik zna napamet do kraja prvog tjedna.</p>
+    <div class="defs">
+      <article class="def rv"><div class="k">pojam 01</div><h3>a Jezebel</h3><p>Djevojka koja je laka, kojoj je teško ostati vjerna i koja se nikad ne smiri u stabilnoj vezi. Šarmantna, nepredvidljiva, uvijek za jednu priču više.</p></article>
+      <article class="def rv"><div class="k">pojam 02</div><h3>Mr. Save a Jezebel</h3><p>Muškarac koji ne mijenja svijet nego samo jednu osobu u njemu. Na bolje. Strpljiv, uporan i potpuno imun na dramu.</p></article>
+      <article class="def hot rv"><div class="k">pojam 03 · najteža razina</div><h3>Sara Rožić</h3><p>Jezebel nad svim Jezebelima. Najteži slučaj ikad zabilježen. Do danas nitko nije prošao njezin dosje do kraja. Osim, možda, jedan čovjek.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="prekra" style="background:var(--ink-2);border-block:1px solid var(--line)">
+  <div class="wrap inst">
+    <div class="rv">
+      <div class="mono-card" id="pcard">
+        <div class="big">Prekra</div>
+        <svg class="bust" viewBox="0 0 400 420" aria-hidden="true">
+          <defs><linearGradient id="bg2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b1620"/><stop offset="1" stop-color="#050406"/></linearGradient></defs>
+          <path fill="url(#bg2)" stroke="rgba(217,178,115,.55)" stroke-width="1.5" d="M200 40C240 40 262 72 260 112C258 146 240 168 224 178L226 200C300 214 360 244 372 300L380 420H20L28 300C40 244 100 214 174 200L176 178C160 168 142 146 140 112C138 72 160 40 200 40Z"/>
+          <path d="M174 200L200 290L226 200" fill="none" stroke="rgba(217,178,115,.55)" stroke-width="1.5"/>
+          <path d="M200 290L186 420M200 290L214 420" fill="none" stroke="rgba(217,178,115,.35)"/>
+          <rect x="146" y="92" width="108" height="24" rx="12" fill="#000" stroke="rgba(217,178,115,.7)"/>
+        </svg>
+        <span class="tag">Mr. Save a Jezebel № 1</span>
+      </div>
+    </div>
+    <div>
+      <div class="eyebrow rv">Predavač</div>
+      <h2 class="rv">Upoznaj <em>Prekru</em>.</h2>
+      <p class="lead rv">Čovjek koji je spasio više Jezebel nego svi ostali predavači zajedno. Bez trikova, bez prečaca i bez ijedne objave na LinkedInu o „mindsetu“. Devet godina terenskog rada, 127 slučajeva i jedna metoda koju priznaju i one koje je nisu htjele priznati.</p>
+      <div class="stats rv">
+        <div><b data-count="127">0</b><span>spašenih Jezebel</span></div>
+        <div><b data-count="9">0</b><span>godina prakse</span></div>
+        <div><b data-count="98" data-suf="%">0</b><span>polaznika ostaje u vezi</span></div>
+      </div>
+      <blockquote class="pq rv">Ne spašavaš nju. Spašavaš ono što je ona mogla biti prije nego što joj je netko slagao.<br><small class="mono" style="font-size:12px;letter-spacing:.16em;color:var(--gold);font-style:normal">— PREKRA</small></blockquote>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow rv">Što uključuje tečaj</div>
+    <h2 class="rv">Sve što ti treba. <em>Ništa</em> što ti ne treba.</h2>
+    <p class="lead rv">Tečaj ne otkriva cijelu metodu javno. Zbog etike, zbog Prekre i zbog činjenice da Sara Rožić također ima internet. Evo što točno dobivaš kad se upišeš.</p>
+    <div class="bento">
+      <div class="cell w3 rv"><span class="ic">Video program</span><div><div class="n" data-count="42">0</div><h3>video lekcija</h3><p>Snimljeno u studiju, bez filtera i bez montaže koja skriva greške.</p></div></div>
+      <div class="cell w3 rv"><span class="ic">Struktura</span><div><div class="n" data-count="8">0</div><h3>modula od prepoznavanja do završnog ispita</h3><p>Od prvog znaka upozorenja do simulacije slučaja Sara Rožić.</p></div></div>
+      <div class="cell half rv"><span class="ic">Klub</span><div><h3>Klub Spasitelja</h3><p>Privatna zajednica muškaraca koji razumiju. I ne osuđuju.</p></div></div>
+      <div class="cell half rv"><span class="ic">Uživo</span><div class="live"><i class="dot"></i> svaki četvrtak</div><div><h3>Live Q&amp;A s Prekrom</h3><p>Pitaj što god. Stvarno što god.</p></div></div>
+      <div class="cell half rv"><span class="ic">Audio</span><div class="wave" aria-hidden="true"></div><div><h3>Audio vodič</h3><p>Za vožnju do nje. I natrag.</p></div></div>
+      <div class="cell w4 rv"><span class="ic">Arhiva</span><div><h3>Dosjei 1 do 127</h3><p>Analizirani slučajevi iz Prekrine arhive, uključujući cjelovitu studiju neuspjeha Josipa Vukića. Imena promijenjena, pouke ostale.</p></div></div>
+      <div class="cell w3 rv"><span class="ic">Certifikat</span><div><h3>Mr. Save a Jezebel</h3><p>Službeni naslov nakon završnog ispita. Nije za objesiti na zid. Ili jest.</p></div></div>
+      <div class="cell w3 rv"><span class="ic">Pristup</span><div><div class="n">∞<sup>doživotno</sup></div><p>Svi budući moduli i nove sezone su besplatni.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="slucajevi" style="background:var(--ink-2);border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="eyebrow rv">Dosjei</div>
+    <h2 class="rv">Dva slučaja. <em>Jedna</em> lekcija.</h2>
+    <p class="lead rv">Svaki polaznik prvo proučava jedan slučaj koji se nikada ne smije ponoviti i jedan koji se još nitko nije usudio riješiti.</p>
+    <div class="cases">
+      <article class="file sara rv">
+        <span class="stamp">Najteži slučaj</span>
+        <div class="id">Dosje 000 · Razina prijetnje ∞</div>
+        <h3>Sara <em class="jz">Rožić</em></h3>
+        <p class="role">The Jezebel of all Jezebels. Neriješeno.</p>
+        <div class="bar"><label><span>Nepredvidljivost</span><span>99.9%</span></label><div class="tr"><div class="fl" data-w="99.9"></div></div></div>
+        <div class="bar"><label><span>Otpornost na promjenu</span><span>100%</span></label><div class="tr"><div class="fl" data-w="100"></div></div></div>
+        <div class="bar"><label><span>Šarm</span><span>over 9000</span></label><div class="tr"><div class="fl" data-w="97"></div></div></div>
+        <div class="bar"><label><span>Šansa za spas</span><span>0.4%</span></label><div class="tr"><div class="fl" data-w="4" style="background:var(--gold)"></div></div></div>
+        <div class="warn">Prekra o slučaju: „<span class="red" tabindex="0">Jedina kojoj sam rekao da ne mogu pomoći</span>, a prvi put sam <span class="red" tabindex="0">poželio pokušati i dalje</span>.“ <span class="mono" style="font-size:11px;color:var(--mute)">(dodirni zacrnjeno)</span></div>
+      </article>
+      <article class="file josip rv">
+        <span class="stamp">Pouka</span>
+        <div class="id">Dosje 089 · Studija neuspjeha</div>
+        <h3>Josip <em style="color:var(--mute)">Vukić</em></h3>
+        <p class="role">Čovjek koji je pokušao. Ali na pogrešan način.</p>
+        <div class="bar"><label><span>Strpljenje</span><span>12%</span></label><div class="tr"><div class="fl" data-w="12"></div></div></div>
+        <div class="bar"><label><span>Dosljednost</span><span>8%</span></label><div class="tr"><div class="fl" data-w="8"></div></div></div>
+        <div class="bar"><label><span>Poruka „nema problema“ poslano</span><span>214×</span></label><div class="tr"><div class="fl" data-w="95"></div></div></div>
+        <ul class="log">
+          <li><time>Tj. 1</time><span>Kupio je cvijeće prije nego što je znao njezino prezime.</span></li>
+          <li><time>Tj. 3</time><span>Opravdao je treće nestajanje u zadnjih sedam dana.</span></li>
+          <li><time>Tj. 6</time><span>Rekao „ja ću je promijeniti“ naglas, u društvu.</span></li>
+          <li><time>Kraj</time><span>Ostao je on. Otišla je ona. S DJ-em.</span></li>
+        </ul>
+        <div class="warn">Nemoj biti kao Josip.</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="program">
+  <div class="wrap">
+    <div class="eyebrow rv">Kurikulum</div>
+    <h2 class="rv">Osam modula. <em>Nula</em> prečaca.</h2>
+    <p class="lead rv">Program je napisan tako da razumiješ kako razmišljati, a ne da dobiješ gotove rečenice. Konkretne tehnike prepuštene su samom tečaju. Kliknite modul za više.</p>
+    <div class="mods" id="mods"></div>
+    <p class="note rv">* Detalji metode namjerno nisu javno objavljeni. Neke stvari se uče samo unutar tečaja.</p>
+  </div>
+</section>
+
+<section style="background:var(--ink-2);border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="eyebrow rv">Interaktivni test</div>
+    <h2 class="rv">Koliko je ona <em>Jezebel</em>?</h2>
+    <p class="lead rv">Označi znakove koje prepoznaješ. Mjerač će procijeniti razinu. Nema pogrešnih odgovora, samo posljedica.</p>
+    <div class="meter">
+      <div class="checks" id="checks"></div>
+      <div class="gauge rv">
+        <svg viewBox="0 0 240 140" aria-hidden="true">
+          <defs><linearGradient id="gg" x1="0" x2="1"><stop offset="0" stop-color="#d9b273"/><stop offset=".6" stop-color="#ff4b7a"/><stop offset="1" stop-color="#e0194f"/></linearGradient></defs>
+          <path d="M20 120A100 100 0 0 1 220 120" fill="none" stroke="rgba(239,231,223,.1)" stroke-width="14" stroke-linecap="round"/>
+          <path id="arc" class="arc" d="M20 120A100 100 0 0 1 220 120" fill="none" stroke="url(#gg)" stroke-width="14" stroke-linecap="round" stroke-dasharray="314.16" stroke-dashoffset="314.16"/>
+          <g id="nd" class="nd" style="transform:rotate(-90deg)"><line x1="120" y1="120" x2="120" y2="34" stroke="#efe7df" stroke-width="3" stroke-linecap="round"/><circle cx="120" cy="120" r="9" fill="#efe7df"/></g>
+        </svg>
+        <div class="sc"><span id="score">0</span>%</div>
+        <div class="vd" id="verdict">Označi barem jedan znak.</div>
+        <p id="vtext">Nulta razina. Moguće da nema o čemu pričati. Ili ne gledaš dovoljno pažljivo.</p>
+        <a href="#upis" class="btn sm mag">Treba mi tečaj</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="rezultati">
+  <div class="wrap">
+    <div class="eyebrow rv">Prije i poslije</div>
+    <h2 class="rv">Dokazi. <em>Povuci</em> da vidiš razliku.</h2>
+    <p class="lead rv">Tri para, tri promjene. Povuci klizač ulijevo i udesno kroz vrijeme.</p>
+    <div class="tabs rv" id="tabs" role="tablist"></div>
+    <div class="cmp rv" id="cmp">
+      <div class="pane b" id="pb"></div>
+      <div class="pane a" id="pa"></div>
+      <div class="handle" id="hd"><i>◂▸</i></div>
+    </div>
+    <div class="hint">← prije &nbsp;·&nbsp; poslije →</div>
+  </div>
+</section>
+
+<section style="background:var(--ink-2);border-block:1px solid var(--line);overflow:hidden">
+  <div class="wrap">
+    <div class="eyebrow rv">Recenzije</div>
+    <h2 class="rv">Što kažu <em>spasitelji</em>.</h2>
+  </div>
+  <div class="rev-rows">
+    <div class="rev-row" id="r1"></div>
+    <div class="rev-row rev" id="r2"></div>
+  </div>
+  <div class="wrap">
+    <div class="feat">
+      <q id="fq"></q><cite id="fc"></cite>
+      <div class="dots" id="fd"></div>
+    </div>
+  </div>
+</section>
+
+<section id="cijene">
+  <div class="wrap">
+    <div class="eyebrow rv">Paketi</div>
+    <h2 class="rv">Odaberi svoju <em>razinu</em>.</h2>
+    <p class="lead rv">Jednokratna uplata. Bez pretplate, bez skrivenih troškova i bez fine print-a, osim onog u modulu osam.</p>
+    <div class="plans">
+      <article class="plan rv"><h3>Pripravnik</h3><div class="pr">149€</div><ul><li>Svih 8 modula (video)</li><li>PDF dosjei 1–40</li><li>Pristup Klubu Spasitelja</li><li>Audio vodič</li></ul><a class="btn ghost mag" href="#upis">Odaberi</a></article>
+      <article class="plan top rv"><span class="pt">Najpopularnije</span><h3>Mr. Save a Jezebel</h3><div class="pr">299€</div><ul><li>Sve iz paketa Pripravnik</li><li>Svi dosjei 1–127 i studija Vukić</li><li>Live Q&amp;A svakog četvrtka</li><li>Završni ispit i certifikat</li><li>Doživotni pristup</li></ul><a class="btn mag" href="#upis">Rezerviraj mjesto</a></article>
+      <article class="plan rv"><h3>Inner Circle</h3><div class="pr">799€</div><ul><li>Sve iz paketa Mr. Save a Jezebel</li><li>3 privatne sesije s Prekrom</li><li>Pregled tvog slučaja osobno</li><li>Prioritetni pristup novim sezonama</li><li>Simulacija „Sara Rožić“ uživo</li></ul><a class="btn ghost mag" href="#upis">Odaberi</a></article>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--ink-2);border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="eyebrow rv">Pitanja</div>
+    <h2 class="rv">Često <em>postavljana</em> pitanja.</h2>
+    <div class="faq rv" id="faq"></div>
+  </div>
+</section>
+
+<section class="final" id="upis">
+  <div class="wrap">
+    <div class="eyebrow rv" style="justify-content:center">Upisi u tijeku · početak 1.11.</div>
+    <h2 class="rv">Netko je čeka. Budi taj <em>netko</em>.</h2>
+    <form class="form rv" id="form" novalidate>
+      <input id="email" type="email" placeholder="tvoj@email.hr" aria-label="Email adresa" autocomplete="email">
+      <button class="btn mag" type="submit">Upiši me →</button>
+    </form>
+    <div class="ok" id="ok" role="status"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="#top" class="logo">How to Save a <i>Jezebel</i></a>
+    <p>Satirični projekt. Sve osobe, citati, recenzije i rezultati na ovoj stranici su izmišljeni. Sara Rožić, Josip Vukić i Prekra ne postoje. Tečaj, nažalost, također ne.</p>
+    <span class="mono">© 2026</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+var $=function(s,r){return (r||document).querySelector(s)},$$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var touch=window.matchMedia('(hover: none)').matches;
+
+/* marquee */
+var words=['Prepoznaj','Razumij','Ostani','Spasi','Mr. Save a Jezebel','Nemoj biti Josip','Upisi 1.11.','Sara Rožić ne čeka'];
+var mq=$('#mq');mq.innerHTML=words.concat(words).map(function(w){return '<span>'+w+'</span>'}).join('');
+
+/* wave */
+$$('.wave').forEach(function(w){var h='';for(var i=0;i<22;i++)h+='<i style="animation-delay:'+(i*0.07).toFixed(2)+'s"></i>';w.innerHTML=h});
+
+/* progress + nav */
+var prog=$('#prog'),nav=$('#nav');
+function onScroll(){var h=document.documentElement.scrollHeight-innerHeight;prog.style.transform='scaleX('+(h>0?scrollY/h:0)+')';nav.classList.toggle('solid',scrollY>40)}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+/* reveal (only elements below the fold get hidden first) */
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+$$('.rv').forEach(function(el){var r=el.getBoundingClientRect();if(r.top>innerHeight*0.95){io.observe(el)}else{el.classList.add('in')}});
+/* safety: anything still hidden after a while becomes visible */
+setTimeout(function(){$$('.rv:not(.in)').forEach(function(el){var r=el.getBoundingClientRect();if(r.top<innerHeight)el.classList.add('in')})},2500);
+
+/* bars + counters */
+var io2=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;var t=e.target;io2.unobserve(t);
+  if(t.dataset.w){t.style.width=t.dataset.w+'%'}
+  if(t.dataset.count){var to=+t.dataset.count,suf=t.dataset.suf||'',s=performance.now(),d=1800;(function f(n){var p=Math.min(1,(n-s)/d),v=Math.round(to*(1-Math.pow(1-p,4)));t.textContent=v+suf;if(p<1)requestAnimationFrame(f)})(s)}
+})},{threshold:.4});
+$$('[data-w],[data-count]').forEach(function(el){io2.observe(el)});
+
+/* spotlight */
+$$('.def,.cell').forEach(function(c){c.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect();c.style.setProperty('--x',(e.clientX-r.left)+'px');c.style.setProperty('--y',(e.clientY-r.top)+'px')})});
+
+/* countdown */
+var target=new Date(2026,10,1,0,0,0).getTime();
+function pad(n){return n<10?'0'+n:''+n}
+function tick(){var d=Math.max(0,target-Date.now()),s=Math.floor(d/1000);var v={d:Math.floor(s/86400),h:Math.floor(s%86400/3600),m:Math.floor(s%3600/60),s:s%60};
+  $$('#cd b').forEach(function(b){b.textContent=pad(v[b.dataset.u])})}
+tick();setInterval(tick,1000);
+
+/* scramble */
+var scr=$('#scr'),chars='ABCDEFGHJKLMNOPRSTUVZ#%&*';var busy=false;
+function scramble(){if(busy||reduce)return;busy=true;var final='Jezebel',i=0;var iv=setInterval(function(){scr.textContent=final.split('').map(function(c,k){return k<i?c:chars[Math.floor(Math.random()*chars.length)]}).join('');i+=.5;if(i>final.length){clearInterval(iv);scr.textContent=final;busy=false}},40)}
+scr.addEventListener('mouseenter',scramble);setTimeout(scramble,1500);
+
+/* hero figure: parallax + rim-light follows cursor */
+var fig=$('#figure'),hero=$('.hero');
+hero.addEventListener('pointermove',function(e){
+  var r=fig.getBoundingClientRect();
+  var x=((e.clientX-r.left)/r.width*100),y=((e.clientY-r.top)/r.height*100);
+  fig.style.setProperty('--mx',(e.clientX-r.left)+'px');fig.style.setProperty('--my',(e.clientY-r.top)+'px');
+  if(!reduce){var px=(e.clientX/innerWidth-.5)*-26,py=(e.clientY/innerHeight-.5)*-12;fig.style.transform='translate('+px+'px,'+py+'px)'}
+});
+/* auto-sweep light on touch / idle */
+if(touch&&!reduce){var tt=0;(function sw(){tt+=.012;var r=fig.getBoundingClientRect();fig.style.setProperty('--mx',(r.width*(.5+.4*Math.sin(tt)))+'px');fig.style.setProperty('--my',(r.height*(.25+.2*Math.sin(tt*1.7)))+'px');requestAnimationFrame(sw)})()}
+
+/* smoke canvas */
+(function(){
+  var cv=$('#smoke'),cx=cv.getContext('2d'),W,H,dpr=Math.min(2,devicePixelRatio||1),ps=[],m={x:-999,y:-999};
+  var spr=document.createElement('canvas');spr.width=spr.height=128;var sc=spr.getContext('2d');var g=sc.createRadialGradient(64,64,0,64,64,64);g.addColorStop(0,'rgba(224,25,79,.9)');g.addColorStop(1,'rgba(224,25,79,0)');sc.fillStyle=g;sc.fillRect(0,0,128,128);
+  function rs(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0)}
+  rs();addEventListener('resize',rs);
+  var N=touch?34:64;
+  for(var i=0;i<N;i++)ps.push({x:Math.random()*1,y:Math.random()*1,r:80+Math.random()*180,vx:(Math.random()-.5)*.0002,vy:-.00008-Math.random()*.0002,a:.05+Math.random()*.1,h:Math.random()<.25?1:0,ph:Math.random()*6});
+  var em=[];for(i=0;i<(touch?24:50);i++)em.push({x:Math.random(),y:Math.random(),s:.6+Math.random()*1.8,v:.0003+Math.random()*.0008,ph:Math.random()*6});
+  hero.addEventListener('pointermove',function(e){var r=cv.getBoundingClientRect();m.x=e.clientX-r.left;m.y=e.clientY-r.top});
+  var vis=true;new IntersectionObserver(function(e){vis=e[0].isIntersecting}).observe(hero);
+  var t0=0;function draw(t){requestAnimationFrame(draw);if(!vis)return;t0=t;cx.clearRect(0,0,W,H);cx.globalCompositeOperation='lighter';
+    ps.forEach(function(p){
+      p.x+=p.vx*16+Math.sin(t*.0003+p.ph)*.00025;p.y+=p.vy*16;
+      var px=p.x*W,py=p.y*H,dx=px-m.x,dy=py-m.y,d=Math.sqrt(dx*dx+dy*dy);
+      if(d<260){p.x+=dx/d*.0012*(1-d/260);p.y+=dy/d*.0012*(1-d/260)}
+      if(p.y<-.3){p.y=1.3;p.x=Math.random()}if(p.x<-.3)p.x=1.3;if(p.x>1.3)p.x=-.3;
+      cx.globalAlpha=p.a*(.7+.3*Math.sin(t*.001+p.ph));
+      cx.filter='none';
+      cx.drawImage(spr,px-p.r,py-p.r,p.r*2,p.r*2);
+      if(p.h){cx.globalAlpha*=.0}
+    });
+    cx.globalCompositeOperation='source-over';
+    cx.fillStyle='#ff9ab4';
+    em.forEach(function(e){e.y-=e.v*16;e.x+=Math.sin(t*.001+e.ph)*.0004;if(e.y<-.05){e.y=1.05;e.x=Math.random()}
+      cx.globalAlpha=.25+.55*Math.abs(Math.sin(t*.002+e.ph));cx.beginPath();cx.arc(e.x*W,e.y*H,e.s,0,6.283);cx.fill()});
+  }
+  /* tint: draw smoke in crimson via overlay */
+  var tint=document.createElement('canvas');
+  if(reduce){cx.globalAlpha=.4;ps.forEach(function(p){cx.drawImage(spr,p.x*W-p.r,p.y*H-p.r,p.r*2,p.r*2)})}else requestAnimationFrame(draw);
+})();
+
+/* cursor */
+if(!touch){
+  var cur=$('#cur'),ring=$('#ring'),cxp=0,cyp=0,rx=0,ry=0;
+  addEventListener('pointermove',function(e){cxp=e.clientX;cyp=e.clientY;cur.style.opacity=1;ring.style.opacity=1});
+  (function f(){rx+=(cxp-rx)*.16;ry+=(cyp-ry)*.16;cur.style.transform='translate('+cxp+'px,'+cyp+'px)';ring.style.transform='translate('+rx+'px,'+ry+'px)';requestAnimationFrame(f)})();
+  document.addEventListener('pointerover',function(e){ring.classList.toggle('big',!!e.target.closest('a,button,.chk,.cmp,.red'))});
+}
+
+/* magnetic buttons */
+if(!touch&&!reduce){$$('.mag').forEach(function(b){b.addEventListener('pointermove',function(e){var r=b.getBoundingClientRect();b.style.transform='translate('+((e.clientX-r.left-r.width/2)*.25)+'px,'+((e.clientY-r.top-r.height/2)*.35)+'px)'});b.addEventListener('pointerleave',function(){b.style.transform=''})})}
+
+/* redacted */
+$$('.red').forEach(function(r){r.addEventListener('click',function(){r.classList.toggle('on')});r.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();r.classList.toggle('on')}})});
+
+/* modules */
+var MODS=[
+ ['Anatomija Jezebel','Prepoznaj je','Prije bilo kakvog pokušaja moraš znati s kim imaš posla. Ovaj modul uči prepoznati tipove, znakove i trenutke u kojima se igra stvarno mijenja.',['Tipologija: šest vrsta Jezebel','Crvene zastave i one koje samo izgledaju kao crvene','Zašto ona zapravo bježi'],'5 lekcija · 1 h 40 min'],
+ ['Identitet: Mr. Save a Jezebel','Tko si ti?','Ne možeš nikoga spasiti ako te prva olujna poruka sruši. Gradimo temelj koji ne ovisi o njezinu raspoloženju.',['Samopoštovanje koje nije glumljeno','Mirnoća kao strategija','Vrijednosti i granice'],'6 lekcija · 2 h 05 min'],
+ ['Okvir','Mentalni sklop','Okvir je ono što ostane kad ostane sve drugo. Naučit ćeš zadržati kurs i kad drama dolazi s tri strane.',['Odluka prije emocije','Kako ne postati njezin zaposlenik','Tišina kao alat'],'5 lekcija · 1 h 55 min'],
+ ['Prvi kontakt','Ulazak u njezin svijet','Prvih sedam dana odlučuje većinu priče. Modul pokazuje što je važno, a što samo izgleda važno.',['Prvi dojam bez glume','Što je ona zapravo testirala','Pogreške koje je Josip napravio u prvih pet minuta'],'6 lekcija · 2 h 20 min'],
+ ['Stabilnost','Ritam, rituali, dosljednost','Promjena se ne događa u velikom trenutku nego u tisuću malih. Gradi se navikom i strpljenjem.',['Rutina koja ne guši','Dosljednost bez kontrole','Kad ona popusti, a kad ti ne smiješ'],'6 lekcija · 2 h 10 min'],
+ ['Terenski slučajevi','Iz Prekrine arhive','Dvadeset analiziranih slučajeva. Što je radilo, što nije i što bi Prekra danas napravio drugačije.',['20 dosjea, imena promijenjena','Razgovori s bivšim Jezebel','Analiza poraza'],'7 lekcija · 3 h 00 min'],
+ ['Slučaj Josip','Sve greške na jednom mjestu','Jednom ćemo sve proći, redom. Svaku poruku, svaki cvijet, svako „nema problema“.',['Kronologija neuspjeha','Psihološki profil Josipa V.','Što je trebao napraviti u 3. tjednu'],'4 lekcije · 1 h 25 min'],
+ ['Završni ispit: Sara Rožić','Simulacija','Završni ispit. Simulacija najtežeg slučaja ikad zabilježenog. Ne polaže ga svatko. Ne završava ga svatko.',['Interaktivni scenarij','Pregled s Prekrom','Dodjela certifikata'],'3 lekcije · ispit']
+];
+var mh='';MODS.forEach(function(m,i){mh+='<div class="mod rv"><button aria-expanded="false"><span class="no">M'+pad(i+1)+'</span><span class="nm">'+m[0]+'</span><span class="pl">+</span></button><div class="bd"><div><div class="in2"><span class="meta">'+m[4]+' · '+m[1]+'</span><p>'+m[2]+'</p><ul>'+m[3].map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul></div></div></div></div>'});
+$('#mods').innerHTML=mh;
+$$('#mods .mod').forEach(function(el){var b=$('button',el);b.addEventListener('click',function(){var o=el.classList.toggle('open');b.setAttribute('aria-expanded',o)})});
+$('#mods .mod').classList.add('open');
+
+/* meter */
+var SIGNS=[['Lajka tuđe fotke u 3 ujutro',14],['„Samo prijatelji“ su njih četrnaestorica',16],['Obećanja traju do petka',14],['Jedva pamti tvoje ime, savršeno pamti tuđe',14],['Svaki tjedan nova drama, uvijek tuđa krivnja',14],['Nestaje na vikend, vraća se u ponedjeljak',14],['Zove se Sara Rožić',100]];
+var ch=$('#checks');SIGNS.forEach(function(s,i){var b=document.createElement('button');b.className='chk';b.setAttribute('aria-pressed','false');b.innerHTML='<span class="bx">✓</span><span>'+s[0]+'</span>';b.addEventListener('click',function(){b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')!=='true');calc()});ch.appendChild(b)});
+var VER=[[0,'Označi barem jedan znak.','Nulta razina. Moguće da nema o čemu pričati. Ili ne gledaš dovoljno pažljivo.'],[1,'Sumnjivo, ali još čisto','Postoje signali. Netko tko zna što radi može ovo okrenuti. Prekra bi rekao: prva faza.'],[30,'Pravi slučaj za tečaj','Ovo je klasična Jezebel. Bez znanja ćeš izgubiti. Sa znanjem ćeš pobijediti.'],[60,'Ozbiljna razina','Visoka razina rizika i velika nagrada. Preporučuje se Mr. Save a Jezebel paket.'],[90,'Razina: Sara Rožić','Najteža moguća razina. Preporučen je Inner Circle. I svijeća. Možda dvije.']];
+function calc(){var sc=0,n=0;$$('.chk',ch).forEach(function(b,i){if(b.getAttribute('aria-pressed')==='true'){sc+=SIGNS[i][1];n++}});sc=Math.min(100,sc);
+  var v=VER[0];VER.forEach(function(x){if(sc>=x[0]&&(sc>0||x[0]===0))v=x});if(sc>0&&sc<1)v=VER[0];
+  $('#score').textContent=sc;$('#arc').style.strokeDashoffset=314.16*(1-sc/100);$('#nd').style.transform='rotate('+(-90+sc*1.8)+'deg)';$('#verdict').textContent=v[1];$('#vtext').textContent=v[2]}
+$$('.chk',ch)[0].click();
+
+/* compare */
+var CASES=[
+ {t:'Luka i Ivana',b:{n:'Luka & Ivana',q:'„Ona je opet nestala. Ja opet čekam.“',m:[['47','poruka u 3 ujutro tjedno'],['6','nepoznatih „kolega“ na storyju'],['0','planova za vikend']]},a:{n:'Luka & Ivana',q:'„Prvi put sam ja ta koja čeka da on dođe kući.“',m:[['0','poruka u 3 ujutro'],['12','zajedničkih planova'],['1','vikend u planini']]}},
+ {t:'Matej i Dora',b:{n:'Matej & Dora',q:'„Svaki put je druga priča. Svaki put isti kraj.“',m:[['5','blokiranja u jednom mjesecu'],['3','„ex“ koji su uvijek „samo prijatelji“'],['11','ghostanja']]},a:{n:'Matej & Dora',q:'„Ostala je. I ne zato što mora.“',m:[['0','blokiranja'],['0','exeva u poruci'],['14','mjeseci zajedno']]}},
+ {t:'Ante i Petra',b:{n:'Ante & Petra',q:'„Obećala je da dolazi. Prošlo je tri sata.“',m:[['3 h','kašnjenja po susretu'],['9','otkazanih spojeva'],['2','prekida u 10 dana']]},a:{n:'Ante & Petra',q:'„Stigla je točno na vrijeme. Plakao sam od sreće. Diskretno.“',m:[['0 min','kašnjenja'],['0','otkazanih spojeva'],['1','zaruke, javno i dobrovoljno']]}}
+];
+var cur2=0;function pane(el,d,tag,lab){el.innerHTML='<div class="tg">'+(tag==='b'?'':'')+lab+'</div><div><h3 class="who">'+d.n+'</h3><p class="qq" style="margin-top:14px">'+d.q+'</p></div><div class="mets">'+d.m.map(function(x){return '<div class="met"><b>'+x[0]+'</b><span>'+x[1]+'</span></div>'}).join('')+'</div>'}
+function setCase(i){cur2=i;pane($('#pb'),CASES[i].b,'b','Prije');pane($('#pa'),CASES[i].a,'a','Poslije');$$('.tab').forEach(function(t,k){t.setAttribute('aria-selected',k===i)})}
+$('#tabs').innerHTML=CASES.map(function(c,i){return '<button class="tab" role="tab" aria-selected="false">'+c.t+'</button>'}).join('');
+$$('.tab').forEach(function(t,i){t.addEventListener('click',function(){setCase(i)})});setCase(0);
+var cmp=$('#cmp'),drag=false;
+function setP(x){var r=cmp.getBoundingClientRect();var p=Math.max(4,Math.min(96,(x-r.left)/r.width*100));cmp.style.setProperty('--p',p+'%')}
+cmp.addEventListener('pointerdown',function(e){drag=true;cmp.setPointerCapture(e.pointerId);setP(e.clientX)});
+cmp.addEventListener('pointermove',function(e){if(drag||(!touch&&e.pointerType==='mouse'&&false))setP(e.clientX)});
+cmp.addEventListener('pointerup',function(){drag=false});cmp.addEventListener('pointercancel',function(){drag=false});
+/* intro sweep */
+var swd=false;new IntersectionObserver(function(es,o){if(es[0].isIntersecting&&!swd&&!reduce){swd=true;var s=performance.now();(function f(n){var p=(n-s)/2400;if(p>=1){cmp.style.setProperty('--p','50%');return}cmp.style.setProperty('--p',(50+38*Math.sin(p*Math.PI*2)*(1-p))+'%');requestAnimationFrame(f)})(s)}},{threshold:.5}).observe(cmp);
+
+/* reviews */
+var REV=[
+ ['Marko T.','„Prije tečaja sam mislio da je „ostat ću na vezi“ znači „ostat ću ja“. Danas znam razliku.“',5],
+ ['Dino K.','„Dva tjedna nakon modula 4 ona je prvi put sama predložila večeru. Bez poruke „tko je ona?“.“',5],
+ ['Fran B.','„Josipov slučaj sam gledao tri puta. Treći put sam plakao. Ne od tuge, od prepoznavanja.“',5],
+ ['Tomislav R.','„Najbolja investicija otkad sam kupio kišobran. Slično: štiti od oluje.“',5],
+ ['Ivan H.','„Nisam vjerovao. Moja Jezebel je danas moja supruga. Zahvalan sam Prekri i Klubu.“',5],
+ ['Luka P.','„Modul „Okvir“ mi je promijenio život. I vikende. I broj poruka u 3 ujutro. Sada ih je nula.“',5],
+ ['Ante M.','„Prekra je jedini koji govori istinu: ne možeš nikoga promijeniti. Možeš samo biti onaj uz koga se ona želi mijenjati.“',5],
+ ['Karlo Š.','„Završni ispit „Sara Rožić“ je težak. Nisam prošao. Ali sam puno naučio. I nisam jedini.“',4],
+ ['Mia, bivša Jezebel','„Nisam znala da se može drugačije. Hvala ti, Mr. Save a Jezebel. Možda si me stvarno spasio.“',5],
+ ['Petar V.','„Kupio sam Inner Circle. Prekra me nazvao u 7 ujutro i rekao: „Ne.“ Imao je pravo.“',5]
+];
+function card(r){var ini=r[0].split(' ').map(function(x){return x[0]}).slice(0,2).join('');return '<div class="rc"><div class="st">'+'★'.repeat(r[2])+'☆'.repeat(5-r[2])+'</div><p>'+r[1]+'</p><div class="by"><span class="av">'+ini+'</span><div>'+r[0]+'<small>Polaznik tečaja</small></div></div></div>'}
+var a1=REV.slice(0,5),a2=REV.slice(5);
+$('#r1').innerHTML=a1.concat(a1,a1,a1).map(card).join('');$('#r2').innerHTML=a2.concat(a2,a2,a2).map(card).join('');
+/* featured quotes */
+var FQ=[['Ne spašavaš nju. Spašavaš onu koja je oduvijek postojala.','Prekra'],['Ona je otišla s DJ-em. Ja sam otišao na tečaj.','Josip V., nakon svega'],['Mogla je biti Sara Rožić. Bila je samo Ivana. I to sam uspio.','Luka, polaznik 2025.'],['Prije tečaja: ghosting. Poslije: gostovanje kod njezinih roditelja.','Matej, polaznik 2025.']];
+var fi=0,fq=$('#fq'),fc=$('#fc'),fd=$('#fd');fd.innerHTML=FQ.map(function(_,i){return '<button aria-label="Citat '+(i+1)+'"></button>'}).join('');
+function showF(i){fi=i;fq.classList.add('out');setTimeout(function(){fq.textContent=FQ[i][0];fc.textContent='— '+FQ[i][1];fq.classList.remove('out');$$('button',fd).forEach(function(b,k){b.classList.toggle('on',k===i)})},350)}
+$$('button',fd).forEach(function(b,i){b.addEventListener('click',function(){showF(i);clr()})});
+fq.textContent=FQ[0][0];fc.textContent='— '+FQ[0][1];$$('button',fd)[0].classList.add('on');
+var fiv=setInterval(function(){showF((fi+1)%FQ.length)},5200);function clr(){clearInterval(fiv);fiv=setInterval(function(){showF((fi+1)%FQ.length)},5200)}
+
+/* faq */
+var FAQ=[['Kad počinju upisi?','Upisi počinju 1.11. Dotad možeš ostaviti email i biti prvi koji dobije pristup.'],['Zašto stranica ne objašnjava kako spasiti Jezebel?','Jer bi to bilo malo neprimjereno. Metoda se uči unutar tečaja, a ovdje je samo najava onoga što dobivaš.'],['Treba li mi prethodno iskustvo?','Ne. Treba ti strpljenje, dobar karakter i spremnost da prvi put u životu ne reagiraš na poruku odmah.'],['Mogu li zamijeniti Prekru?','Ne. Pokušao je jedan Josip. Znaš kako je završilo.'],['Što ako je moja Jezebel „Sara Rožić“ razine?','Tada ti preporučujemo Inner Circle paket. I, iskreno, zatraži od Prekre da te nazove.']];
+$('#faq').innerHTML=FAQ.map(function(f){return '<div class="q"><button aria-expanded="false">'+f[0]+'<span>+</span></button><div class="bd"><p>'+f[1]+'</p></div></div>'}).join('');
+$$('.q').forEach(function(q){$('button',q).addEventListener('click',function(){var o=q.classList.toggle('open');$('button',q).setAttribute('aria-expanded',o)})});
+
+/* form */
+$('#form').addEventListener('submit',function(e){e.preventDefault();var v=$('#email').value.trim();var ok=$('#ok');
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)){ok.style.color='var(--blood-2)';ok.textContent='Upiši ispravnu email adresu.';return}
+  ok.style.color='var(--gold)';ok.textContent='Dobrodošao u Klub Spasitelja, '+v+'. Vidimo se 1.11. (ovo je demo, nitko te nije stvarno upisao)'; $('#email').value=''});
+})();
+</script>
+
+</body></html>
